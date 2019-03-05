@@ -1,6 +1,6 @@
 package IntroToProgLab1;
 
-public class Team {
+class Team {
     private String finalResults;
     private int matches;
     private int wins;
@@ -8,10 +8,10 @@ public class Team {
     private int defeats;
     private int goals;
     private int misses;
-    public int score;
-    public String name;
+    int score;
+    String name;
 
-    public Team(String name) {
+    Team(String name) {
         finalResults = "";
         this.name = name;
         matches = 0;
@@ -23,7 +23,7 @@ public class Team {
         score = 0;
     }
 
-    public void gameResult(Team nameOfTeam, String[] teamsMatches) {
+    void gameResult(Team nameOfTeam, String[] teamsMatches) {
         for (int i = 1; i < teamsMatches.length; i++) {
             String[] team = teamsMatches[i].split(":");
             int team1 = Integer.parseInt(team[0]);
@@ -47,11 +47,11 @@ public class Team {
         }
     }
 
-    public void uptScore() {
+    void uptScore() {
         score = wins * 3 + draws;
     }
 
-    public String getInformation() {
+    String getInformation() {
         finalResults += name + ",";
         finalResults += matches + ",";
         finalResults += wins + ",";

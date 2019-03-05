@@ -3,14 +3,14 @@ package IntroToProgLab1;
 import java.io.*;
 import java.util.Scanner;
 
-public class FindScore {
-    static final int amountOfTeams = 20;
-    static File inputCsvFile = new File("/home/yarik/IdeaProjects/IntroToProg/src/IntroToProgLab1/csvFiles/premier_league.csv");
-    static File outputCsvFile = new File("/home/yarik/IdeaProjects/IntroToProg/src/IntroToProgLab1/csvFiles/results.csv");
-    static int maxScore = 0;
-    static String winner = "";
+class FindScore {
+    private static final int amountOfTeams = 20;
+    private static File inputCsvFile = new File("/home/yarik/IdeaProjects/IntroToProg/src/IntroToProgLab1/csvFiles/premier_league.csv");
+    private static File outputCsvFile = new File("/home/yarik/IdeaProjects/IntroToProg/src/IntroToProgLab1/csvFiles/results.csv");
+    private static int maxScore = 0;
+    private static String winner = "";
 
-    public void findTotalResults() {
+    void findTotalResults() {
         String winner = "";
         String[] arrayOfStats = new String[amountOfTeams]; //таблица результатов матчей в массиве
         try (Scanner read = new Scanner(new FileReader(inputCsvFile))) {  // try с ресурсами
@@ -29,7 +29,7 @@ public class FindScore {
         System.out.println(winner);
     }
 
-    public String findWinner(Team team) {
+    private String findWinner(Team team) {
         if (team.score > maxScore) {
             maxScore = team.score;
             winner = team.name;
