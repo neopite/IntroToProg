@@ -38,7 +38,7 @@ class Team {
                 goals += team1;
                 misses += team2;
                 defeats++;
-            } else if (team1 > team2) {
+            } else  {
                 wins++;
                 goals += team1;
                 misses += team2;
