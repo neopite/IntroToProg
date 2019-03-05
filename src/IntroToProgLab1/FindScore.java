@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 class FindScore {
     private static final int amountOfTeams = 20;
-    private static File inputCsvFile = new File("D:\\Work\\IntroToProgrammingLab1\\src\\IntroToProgLab1\\csvFiles\\premier_league.csv");
-    private static File outputCsvFile = new File("D:\\Work\\IntroToProgrammingLab1\\src\\IntroToProgLab1\\csvFiles\\results.csv");
+    private static File inputCsvFile = new File("/home/yarik/IdeaProjects/IntroToProg/src/IntroToProgLab1/csvFiles/premier_league.csv");
+    private static File outputCsvFile = new File("/home/yarik/IdeaProjects/IntroToProg/src/IntroToProgLab1/csvFiles/results.csv");
     private static int maxScore = 0;
     private static String winner = "";
 
@@ -15,7 +15,6 @@ class FindScore {
         PrintWriter csvWriter = new PrintWriter(outputCsvFile);
         String[] arrayOfStats = new String[amountOfTeams]; //таблица результатов матчей в массиве
         try (Scanner read = new Scanner(new FileReader(inputCsvFile))) {  // try с ресурсами
-
             for (int itter = 0; itter < amountOfTeams; itter++) {
                 arrayOfStats[itter] = read.nextLine();  // читаем строку с premier_league.csv
                 String[] splitter = arrayOfStats[itter].split(","); // разбиваем строку на подстроки с результатами
@@ -36,7 +35,7 @@ class FindScore {
         PrintWriter csvWriter = new PrintWriter(outputCsvFile);
         String[] arrayOfStats = new String[amountOfTeams]; //таблица результатов матчей в массиве
         try (Scanner read = new Scanner(new FileReader(inputCsvFile))) {  // try с ресурсами
-
+            csvWriter.write("Команда,Матчи,Побед,Ничей,Поражений,Голы,Очки");
             csvWriter.write(findWinnerToWrite() + '\n');
             for (int itter = 0; itter < amountOfTeams; itter++) {
                 arrayOfStats[itter] = read.nextLine();  // читаем строку с premier_league.csv
