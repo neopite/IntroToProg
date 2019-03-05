@@ -17,7 +17,7 @@ class Team {
         matches = 0;
         wins = 0;
         draws = 0;
-        defeats= 0;
+        defeats = 0;
         goals = 0;
         misses = 0;
         score = 0;
