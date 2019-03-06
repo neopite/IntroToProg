@@ -25,7 +25,7 @@ class FindScore {
                 csvWriter.write(team.getInformation(team) + '\n');
                 winner=findWinner(team);
             }
-            csvWriter.write("Winner:"+winner);
+            System.out.println("Winner:"+winner);
             csvWriter.close();
 
         } catch (IOException err) {
