@@ -10,41 +10,22 @@ class FindScore {
     private static int maxScore = 0;
     private static String winner = "";
 
-    private String findWinnerToWrite() throws FileNotFoundException {
-        String winner = "";
-        PrintWriter csvWriter = new PrintWriter(outputCsvFile);
-        String[] arrayOfStats = new String[amountOfTeams]; //таблица результатов матчей в массиве
-        try (Scanner read = new Scanner(new FileReader(inputCsvFile))) {  // try с ресурсами
-            for (int itter = 0; itter < amountOfTeams; itter++) {
-                arrayOfStats[itter] = read.nextLine();  // читаем строку с premier_league.csv
-                String[] splitter = arrayOfStats[itter].split(","); // разбиваем строку на подстроки с результатами
-                Team team = new Team(splitter[0]);
-                team.gameResult(team, splitter);  //статистика каждой команды
-                team.uptScore();
-                winner = findWinner(team);
-            }
-            csvWriter.close();
-        } catch (IOException err) {
-            err.printStackTrace();
-        }
-        return winner;
-    }
-
     void findTotalResults() throws FileNotFoundException {
         String winner = "";
         PrintWriter csvWriter = new PrintWriter(outputCsvFile);
         String[] arrayOfStats = new String[amountOfTeams]; //таблица результатов матчей в массиве
         try (Scanner read = new Scanner(new FileReader(inputCsvFile))) {  // try с ресурсами
-            csvWriter.write("Команда,Матчи,Побед,Ничей,Поражений,Голы,Очки");
-            csvWriter.write(findWinnerToWrite() + '\n');
+            csvWriter.write("Команда,Матчи,Побед,Ничей,Поражений,Голы,Очки"+'\n');
             for (int itter = 0; itter < amountOfTeams; itter++) {
                 arrayOfStats[itter] = read.nextLine();  // читаем строку с premier_league.csv
                 String[] splitter = arrayOfStats[itter].split(","); // разбиваем строку на подстроки с результатами
                 Team team = new Team(splitter[0]);
                 team.gameResult(team, splitter);  //статистика каждой команды
                 team.uptScore();
-                csvWriter.write(team.getInformation() + '\n');
+                csvWriter.write(team.getInformation(team) + '\n');
+                winner=findWinner(team);
             }
+            csvWriter.write("Winner:"+winner);
             csvWriter.close();
 
         } catch (IOException err) {
@@ -60,4 +41,3 @@ class FindScore {
         return winner;
     }
 }
-

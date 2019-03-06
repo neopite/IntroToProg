@@ -51,7 +51,7 @@ class Team {
         score = wins * 3 + draws;
     }
 
-    String getInformation() {
+    String getInformation(Team team) {
         finalResults += name + ",";
         finalResults += matches + ",";
         finalResults += wins + ",";
