@@ -8,8 +8,8 @@ class Team {
     private int defeats;
     private int goals;
     private int misses;
-    int score;
-    String name;
+    private int score;
+    private String name;
 
     Team(String name) {
         finalResults = "";
@@ -51,7 +51,7 @@ class Team {
         score = wins * 3 + draws;
     }
 
-    String getInformation(Team team) {
+    String getInformation() {
         finalResults += name + ",";
         finalResults += matches + ",";
         finalResults += wins + ",";

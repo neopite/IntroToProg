@@ -5,13 +5,13 @@ import java.util.Scanner;
 
 class FindScore {
     private static final int amountOfTeams = 20;
-    private static File inputCsvFile = new File("/home/yarik/IdeaProjects/IntroToProg/src/IntroToProgLab1/csvFiles/premier_league.csv");
-    private static File outputCsvFile = new File("/home/yarik/IdeaProjects/IntroToProg/src/IntroToProgLab1/csvFiles/results.csv");
-    private static int maxScore = 0;
-    private static String winner = "";
+    private static File inputCsvFile = new File("G:\\IntroToProgrammingLab1\\src\\IntroToProgLab1\\csvFiles\\premier_league.csv");
+    private static File outputCsvFile = new File("G:\\IntroToProgrammingLab1\\src\\IntroToProgLab1\\csvFiles\\results.csv");
 
     void findTotalResults() throws FileNotFoundException {
-        String winner = "";
+        String[] teamResults = new String[amountOfTeams];
+        int[] teamScores = new int[amountOfTeams];
+
         PrintWriter csvWriter = new PrintWriter(outputCsvFile);
         String[] arrayOfStats = new String[amountOfTeams]; //таблица результатов матчей в массиве
         try (Scanner read = new Scanner(new FileReader(inputCsvFile))) {  // try с ресурсами
@@ -22,22 +22,35 @@ class FindScore {
                 Team team = new Team(splitter[0]);
                 team.gameResult(team, splitter);  //статистика каждой команды
                 team.uptScore();
-                csvWriter.write(team.getInformation(team) + '\n');
-                winner=findWinner(team);
+                String temp = team.getInformation();
+                teamResults[itter] = temp;
+                teamScores[itter] = Integer.parseInt(temp.split(",")[6]);
             }
-            System.out.println("Winner:"+winner);
+            int last = amountOfTeams;
+            for (boolean sorted = last == 0; !sorted; --last) {
+                sorted = true;
+                for (int i = 1; i < last; ++i) {
+                    if (teamScores[i - 1] < teamScores[i]) {
+                        sorted = false;
+
+                        String tempResult = teamResults[i-1];
+                        teamResults[i-1] = teamResults[i];
+                        teamResults[i] = tempResult;
+
+                        int tempScore = teamScores[i-1];
+                        teamScores[i-1] = teamScores[i];
+                        teamScores[i] = tempScore;
+                    }
+                }
+            }
+            for (int i = 0; i < amountOfTeams - 1; i++) {
+                csvWriter.write(teamResults[i] + '\n');
+            }
             csvWriter.close();
 
         } catch (IOException err) {
             err.printStackTrace();
         }
-    }
 
-    private static String findWinner(Team team) {
-        if (team.score > maxScore) {
-            maxScore = team.score;
-            winner = team.name;
-        }
-        return winner;
     }
 }
