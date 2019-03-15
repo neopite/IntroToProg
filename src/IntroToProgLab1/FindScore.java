@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 class FindScore {
     private static final int amountOfTeams = 20;
-    private static File inputCsvFile = new File("G:\\IntroToProgrammingLab1\\src\\IntroToProgLab1\\csvFiles\\premier_league.csv");
-    private static File outputCsvFile = new File("G:\\IntroToProgrammingLab1\\src\\IntroToProgLab1\\csvFiles\\results.csv");
+    private static File inputCsvFile = new File("/home/yarik/IdeaProjects/IntroToProg/src/IntroToProgLab1/csvFiles/premier_league.csv");
+    private static File outputCsvFile = new File("/home/yarik/IdeaProjects/IntroToProg/src/IntroToProgLab1/csvFiles/results.csv");
 
     void findTotalResults() throws FileNotFoundException {
         String[] teamResults = new String[amountOfTeams];
@@ -41,6 +41,7 @@ class FindScore {
                         teamScores[i-1] = teamScores[i];
                         teamScores[i] = tempScore;
                     }
+
                 }
             }
             for (int i = 0; i < amountOfTeams - 1; i++) {
@@ -52,5 +53,14 @@ class FindScore {
             err.printStackTrace();
         }
 
+    }
+    public void change(Team [] teams){
+        for (int itter = 0; itter < amountOfTeams; itter++) {
+            for (int x = 0; x < amountOfTeams; x++) {
+                if(teams[itter].score==teams[x].score && teams[itter].matches>teams[x].matches){
+
+                }
+            }
+        }
     }
 }
