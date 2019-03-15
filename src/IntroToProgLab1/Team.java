@@ -28,6 +28,7 @@ class Team {
             String[] team = teamsMatches[i].split(":");
             int team1 = Integer.parseInt(team[0]);
             int team2 = Integer.parseInt(team[1]);
+            matches++;
             if (team1 < team2) {
                 defeats++;
                 goals += team1;
