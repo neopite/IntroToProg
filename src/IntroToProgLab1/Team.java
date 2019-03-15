@@ -1,5 +1,7 @@
 package IntroToProgLab1;
 
+import java.util.Arrays;
+
 class Team {
     private String finalResults;
      int matches;
