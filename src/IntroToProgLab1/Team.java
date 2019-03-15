@@ -1,5 +1,7 @@
 package IntroToProgLab1;
 
+import java.util.Arrays;
+
 class Team {
     private String finalResults;
     private int matches;
@@ -25,25 +27,29 @@ class Team {
 
     void gameResult(Team nameOfTeam, String[] teamsMatches) {
         for (int i = 1; i < teamsMatches.length; i++) {
-            String[] team = teamsMatches[i].split(":");
-            int team1 = Integer.parseInt(team[0]);
-            int team2 = Integer.parseInt(team[1]);
-            matches++;
-            if (team1 < team2) {
-                defeats++;
-                goals += team1;
-                misses += team2;
-                defeats++;
-            } else if (team1 == team2) {
-                draws++;
-                goals += team1;
-                misses += team2;
-                defeats++;
-            } else  {
-                wins++;
-                goals += team1;
-                misses += team2;
-                defeats++;
+            if (teamsMatches[i].equalsIgnoreCase("x")) {
+                continue;
+            } else {
+                matches++;
+                String[] team = teamsMatches[i].split(":");
+                int team1 = Integer.parseInt(team[0]);
+                int team2 = Integer.parseInt(team[1]);
+                if (team1 < team2) {
+                    defeats++;
+                    goals += team1;
+                    misses += team2;
+                    defeats++;
+                } else if (team1 == team2) {
+                    draws++;
+                    goals += team1;
+                    misses += team2;
+                    defeats++;
+                } else {
+                    wins++;
+                    goals += team1;
+                    misses += team2;
+                    defeats++;
+                }
             }
         }
     }

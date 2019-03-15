@@ -1,18 +1,20 @@
 package IntroToProgLab1;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.Scanner;
 
 class FindScore {
     private static final int amountOfTeams = 20;
-    private static File inputCsvFile = new File("/home/ivan/IdeaProjects/IntroToProgrammingLab1/src/IntroToProgLab1/csvFiles/premier_league.csv");
-    private static File outputCsvFile = new File("/home/ivan/IdeaProjects/IntroToProgrammingLab1/src/IntroToProgLab1/csvFiles/results.csv");
+    private static File inputCsvFile = new File("/home/yarik/IdeaProjects/IntroToProg/src/IntroToProgLab1/csvFiles/premier_league.csv");
+    private static File outputCsvFile = new File("/home/yarik/IdeaProjects/IntroToProg/src/IntroToProgLab1/csvFiles/results.csv");
 
-    void findTotalResults() {
+    void findTotalResults() throws FileNotFoundException {
         String[] teamResults = new String[amountOfTeams];
         int[] teamScores = new int[amountOfTeams];
         int[] teamMatches = new int[amountOfTeams];
 
+        PrintWriter csvWriter=new PrintWriter(outputCsvFile);
         String[] arrayOfStats = new String[amountOfTeams]; //таблица результатов матчей в массиве
         try (Scanner read = new Scanner(new FileReader(inputCsvFile))) {  // try с ресурсами
 
